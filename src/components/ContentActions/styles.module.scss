@@ -1,12 +1,13 @@
 .section {
   width: 100%;
-  border: solid 1px #000000;
+
 
   div {
     margin: 72px 16px 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding-top: 16px;
 
     h4 {
       font-size: 36px;
