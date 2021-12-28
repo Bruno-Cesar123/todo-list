@@ -1,7 +1,9 @@
+import { Dashboard } from './pages/Dashboard';
+import './styles/global.scss';
 
 function App() {
   return (
-    <h1>Hello world</h1>
+    <Dashboard />
   );
 }
 
