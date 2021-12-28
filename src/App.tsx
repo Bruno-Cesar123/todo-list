@@ -1,9 +1,32 @@
+import { useState } from 'react';
+import Modal from 'react-modal';
+import { NewTaskModal } from './components/NewTaskModal';
+import { ContentActions } from './components/ContentActions';
 import { Dashboard } from './pages/Dashboard';
 import './styles/global.scss';
 
+Modal.setAppElement('#root');
+
 function App() {
+  const [isNewTaskModalOpen, setIsNewTaskMoalOpen] = useState(false);
+
+  function handleOpenNewTaskModal() {
+    setIsNewTaskMoalOpen(true);
+  }
+
+  function handleCloseNewTaskModal() {
+    setIsNewTaskMoalOpen(false);
+  }
   return (
-    <Dashboard />
+    <>
+      <Dashboard>
+        <ContentActions onOpenNewTaskModal={handleOpenNewTaskModal} />
+      </Dashboard>
+      <NewTaskModal
+        isOpen={isNewTaskModalOpen}
+        onRequestClose={handleCloseNewTaskModal}
+      />
+    </>
   );
 }
 

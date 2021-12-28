@@ -1,12 +1,16 @@
 import { FiPlus } from 'react-icons/fi';
 import styles from './styles.module.scss'
 
-export function ContentActions() {
+interface contentActionsProps {
+  onOpenNewTaskModal: () => void;
+}
+
+export function ContentActions({ onOpenNewTaskModal }: contentActionsProps) {
   return (
     <section className={styles.section}>
       <div>
         <h4>Suas tarefas do dia</h4>
-        <button>
+        <button type='button' onClick={onOpenNewTaskModal}>
           <FiPlus size={20} /> Nova Tarefa
         </button>
       </div>
