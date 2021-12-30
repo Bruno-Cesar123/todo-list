@@ -12,6 +12,7 @@ interface TasksProviderProps {
 interface TasksContextData {
   tasks: Task[];
   createTask: (task: Task) => void;
+  deleteTask: (title: string) => void;
 }
 
 export const TasksContext = createContext<TasksContextData>(
@@ -38,8 +39,16 @@ export function TasksProvider({ children }: TasksProviderProps) {
     localStorage.setItem('@TodoList:tasks', JSON.stringify(newTask))
   }
 
+  function deleteTask(title: string) {
+    const newListTasks = tasks.filter((where) => {
+      return where.title !== title
+    });
+
+    setTasks(newListTasks);
+  }
+
   return (
-    <TasksContext.Provider value={{ tasks, createTask }}>
+    <TasksContext.Provider value={{ tasks, createTask, deleteTask }}>
       {children}
     </TasksContext.Provider>
   )

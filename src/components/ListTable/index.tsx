@@ -6,7 +6,7 @@ import { TasksContext } from '../../TasksContext';
 import styles from './styles.module.scss';
 
 export function ListTable() {
-  const { tasks } = useContext(TasksContext);
+  const { tasks, deleteTask } = useContext(TasksContext);
 
   return (
     <section className={styles.section}>
@@ -25,8 +25,8 @@ export function ListTable() {
               <tr key={item.title}>
                 <td><input type="checkbox" /></td>
                 <td>{item.title}</td>
-                <td>{item.duration}</td>
-                <td className={styles.actions}><FiTrash size={20} color='red' /></td>
+                <td>{item.duration}h</td>
+                <td className={styles.actions}><FiTrash size={20} color='red' onClick={() => deleteTask(item.title)} /></td>
               </tr>
             )
           })}
