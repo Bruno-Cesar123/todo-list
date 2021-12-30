@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect, ReactNode } from 'react';
+import { createContext, useState, useEffect, ReactNode, useContext } from 'react';
 
 interface Task {
   title: string;
@@ -15,7 +15,7 @@ interface TasksContextData {
   deleteTask: (title: string) => void;
 }
 
-export const TasksContext = createContext<TasksContextData>(
+const TasksContext = createContext<TasksContextData>(
   {} as TasksContextData
 );
 
@@ -32,7 +32,14 @@ export function TasksProvider({ children }: TasksProviderProps) {
     return [];
   });
 
-  function createTask(task: Task) {
+  useEffect(() => {
+    localStorage.setItem(
+      '@TodoList:tasks',
+      JSON.stringify(tasks),
+    );
+  }, [tasks]);
+
+  async function createTask(task: Task) {
     const newTask = [...tasks, task];
     setTasks(newTask)
 
@@ -52,4 +59,10 @@ export function TasksProvider({ children }: TasksProviderProps) {
       {children}
     </TasksContext.Provider>
   )
+}
+
+export function useTasks() {
+  const context = useContext(TasksContext);
+
+  return context;
 }

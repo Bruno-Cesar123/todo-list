@@ -1,12 +1,11 @@
 
-import { useContext } from 'react';
 import { FiTrash } from 'react-icons/fi';
-import { TasksContext } from '../../TasksContext';
+import { useTasks } from '../../hooks/useTasks';
 
 import styles from './styles.module.scss';
 
 export function ListTable() {
-  const { tasks, deleteTask } = useContext(TasksContext);
+  const { tasks, deleteTask } = useTasks();
 
   return (
     <section className={styles.section}>

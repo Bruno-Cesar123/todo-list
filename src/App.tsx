@@ -3,7 +3,7 @@ import Modal from 'react-modal';
 import { NewTaskModal } from './components/NewTaskModal';
 import { ContentActions } from './components/ContentActions';
 import { Dashboard } from './pages/Dashboard';
-import { TasksProvider } from './TasksContext';
+import { TasksProvider } from './hooks/useTasks';
 
 import './styles/global.scss';
 

@@ -1,8 +1,8 @@
-import { useState, useEffect, FormEvent, useContext } from 'react';
+import { useState, FormEvent } from 'react';
 import Modal from 'react-modal';
 import { FiXCircle } from'react-icons/fi';
 
-import { TasksContext } from '../../TasksContext';
+import { useTasks } from '../../hooks/useTasks';
 
 import styles from './styles.module.scss';
 
@@ -12,17 +12,10 @@ interface newTaskModalProps {
 }
 
 export function NewTaskModal({ isOpen, onRequestClose }: newTaskModalProps) {
-  const { createTask, tasks } = useContext(TasksContext);
+  const { createTask } = useTasks();
 
   const [title, setTitle] = useState('');
   const [duration, setDuration] = useState(0);
-
-  useEffect(() => {
-      localStorage.setItem(
-        '@TodoList:tasks',
-        JSON.stringify(tasks),
-      );
-    }, [tasks]);
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
@@ -31,6 +24,10 @@ export function NewTaskModal({ isOpen, onRequestClose }: newTaskModalProps) {
       title,
       duration
     })
+
+    setTitle('')
+    setDuration(0)
+    onRequestClose();
   }
 
   return (
