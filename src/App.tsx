@@ -3,6 +3,8 @@ import Modal from 'react-modal';
 import { NewTaskModal } from './components/NewTaskModal';
 import { ContentActions } from './components/ContentActions';
 import { Dashboard } from './pages/Dashboard';
+import { TasksProvider } from './TasksContext';
+
 import './styles/global.scss';
 
 Modal.setAppElement('#root');
@@ -18,7 +20,7 @@ function App() {
     setIsNewTaskMoalOpen(false);
   }
   return (
-    <>
+    <TasksProvider>
       <Dashboard>
         <ContentActions onOpenNewTaskModal={handleOpenNewTaskModal} />
       </Dashboard>
@@ -26,7 +28,7 @@ function App() {
         isOpen={isNewTaskModalOpen}
         onRequestClose={handleCloseNewTaskModal}
       />
-    </>
+    </TasksProvider>
   );
 }
 

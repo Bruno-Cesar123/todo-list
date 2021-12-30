@@ -1,8 +1,13 @@
+
+import { useContext } from 'react';
 import { FiTrash } from 'react-icons/fi';
+import { TasksContext } from '../../TasksContext';
 
 import styles from './styles.module.scss';
 
 export function ListTable() {
+  const { tasks } = useContext(TasksContext);
+
   return (
     <section className={styles.section}>
       <table>
@@ -11,32 +16,20 @@ export function ListTable() {
             <th></th>
             <th>Nome da tarefa</th>
             <th>Duração</th>
-            <th>Status</th>
             <th>Ações</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td><input type="checkbox" /></td>
-            <td>Aprender Node</td>
-            <td>02:00</td>
-            <td className={styles.status}>Executando</td>
-            <td className={styles.actions}><FiTrash size={20} color='red' /></td>
-          </tr>
-          <tr>
-            <td><input type="checkbox" /></td>
-            <td>Aprender python</td>
-            <td>02:00</td>
-            <td className={styles.status}>Executando</td>
-            <td className={styles.actions}><FiTrash size={20} color='red' /></td>
-          </tr>
-          <tr>
-            <td><input type="checkbox" /></td>
-            <td>Aprender java</td>
-            <td>02:00</td>
-            <td className={styles.status}>Executando</td>
-            <td className={styles.actions}><FiTrash size={20} color='red' /></td>
-          </tr>
+          {tasks.map((item) => {
+            return (
+              <tr key={item.title}>
+                <td><input type="checkbox" /></td>
+                <td>{item.title}</td>
+                <td>{item.duration}</td>
+                <td className={styles.actions}><FiTrash size={20} color='red' /></td>
+              </tr>
+            )
+          })}
         </tbody>
       </table>
     </section>
