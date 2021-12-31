@@ -14,7 +14,7 @@
 
 ## Demonstração
 
-<img width="800px" alt="home" src="./.github/home.png">
+<img width="800px" alt="home" src="./.github/home.PNG">
 
 ## ✨ Tecnologias
 
@@ -32,8 +32,6 @@ $ git clone https://github.com/Bruno-Cesar123/todo-list.git
 
 # Acesse a pasta do projeto no terminal/cmd
 $ cd todo-list
-
-# Faça uma copia do arquivo `.env.example` para `.env` e preencha com as suas credenciais do GitHub
 
 # Instale as dependências
 $ npm install ou yarn
